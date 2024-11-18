@@ -5,19 +5,19 @@
     <!-- Focused and not pressed -->
     <item android:state_focused="true"
         android:state_pressed="false"
-        android:color="@color/text_color_white" />
+        android:color="@color/AppBar_Icon_Color" />
 
     <!-- Focused and pressed -->
     <item android:state_focused="true"
         android:state_pressed="true"
-        android:color="@color/text_color_white" />
+        android:color="@color/AppBar_Icon_Color" />
 
     <!-- Unfocused and pressed -->
     <item android:state_focused="false"
         android:state_pressed="true"
-        android:color="@color/text_color_white"/>
+        android:color="@color/AppBar_Icon_Color"/>
 
     <!-- Default color -->
-    <item android:color="@color/text_color_white" />
+    <item android:color="@color/AppBar_Icon_Color" />
 
 </selector>

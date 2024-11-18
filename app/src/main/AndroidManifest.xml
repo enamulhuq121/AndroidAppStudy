@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.icddrb.mental_health_survey"
     android:installLocation="preferExternal">
 
 
@@ -102,7 +101,7 @@
         <activity android:name="forms_activity.Patient_list" />
         <activity android:name="forms_activity.Patient" />
         <activity android:name="forms_activity.SectionA" />
-        <activity android:name="forms_activity.ScreeningChild" />
+
         <activity android:name="forms_activity.SectionB" />
         <activity android:name="forms_activity.SectionC" />
         <activity android:name="forms_activity.SPECIFICVAR" />
@@ -115,6 +114,7 @@
         <activity android:name="forms_activity.Provider" />
         <activity android:name="forms_activity.Menu_Patient" />
         <activity android:name="forms_activity.Women" />
-
+        <activity android:name="forms_activity.Specialist" />
+        <activity android:name="forms_activity.Specialist_list" />
     </application>
 </manifest>

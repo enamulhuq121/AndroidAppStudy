@@ -248,9 +248,11 @@
          secFacilityID=(LinearLayout)findViewById(R.id.secFacilityID);
          lineFacilityID=(View)findViewById(R.id.lineFacilityID);
          VlblFacilityID=(TextView) findViewById(R.id.VlblFacilityID);
+
          txtFacilityID=(EditText) findViewById(R.id.txtFacilityID);
          txtFacilityID.setText(FACILITYID);
          txtFacilityID.setEnabled(false);
+
          secreg_date=(LinearLayout)findViewById(R.id.secreg_date);
          linereg_date=(View)findViewById(R.id.linereg_date);
          Vlblreg_date=(TextView) findViewById(R.id.Vlblreg_date);

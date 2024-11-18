@@ -1815,4 +1815,9 @@ public class Connection extends SQLiteOpenHelper {
         String BNO = ReturnSingleValue("Select (ifnull(max(cast(Landmark as numeric(10))),0)+1)MaxId from GPS_Landmark where DCode='"+ DCode +"' and UPCode='"+ UPCode +"' and UNCode='"+ UNCode +"' and Cluster='"+ Cluster +"' and VCode='"+ VCode +"'");
         return Global.Right("0000000000"+BNO,3);
     }
+
+    public String NewSpecialistID(String DeviceNo) {
+        String SID = ReturnSingleValue("Select (ifnull(max(cast(SpecialistID as numeric(10))),0)+1)MaxId from Specialist where DeviceID='"+ DeviceNo +"'");
+        return DeviceNo + Global.Right("0000000000"+SID,5);
+    }
 }

@@ -215,7 +215,9 @@ import android.content.Context;
            return response;
         }
 
-          int Count = 0;          private int _Count = 0;          public int getCount(){ return _Count; }
+          int Count = 0;
+          private int _Count = 0;
+          public int getCount(){ return _Count; }
         public List<Patient_DataModel> SelectAll(Context context, String SQL)
         {
             Connection C = new Connection(context);

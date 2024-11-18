@@ -498,7 +498,6 @@
       mYear = year; mMonth = monthOfYear+1; mDay = dayOfMonth;
       EditText dtpDate;
 
-
       }
   };
 

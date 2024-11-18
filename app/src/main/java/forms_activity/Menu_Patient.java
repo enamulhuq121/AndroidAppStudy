@@ -103,10 +103,10 @@ public class Menu_Patient extends Activity {
         cmdSChild=findViewById(R.id.cmdFSChild);
         cmdSChild.setOnClickListener(view -> {
             Bundle IDbundle = new Bundle();
-            IDbundle.putString("PatientID", PATIENTID);
+          //  IDbundle.putString("SpecialistID", SPECIALISTID);
             IDbundle.putString("FacilityID", FACILITYID);
-            IDbundle.putString("WoName", WoName);
-            Intent f1 = new Intent(getApplicationContext(), ScreeningChild.class);
+           // IDbundle.putString("WoName", WoName);
+            Intent f1 = new Intent(getApplicationContext(), Specialist.class);
             f1.putExtras(IDbundle);
             startActivityForResult(f1,1);
         });
