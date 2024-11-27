@@ -125,9 +125,9 @@ public class Specialist_list extends AppCompatActivity{
                     startActivityForResult(intent, 1);
 
                 }});
+
+
             txtSearch = (EditText)findViewById(R.id.txtSearch);
-
-
             recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
             mAdapter = new Specialist_list.DataAdapter(dataList);
             recyclerView.setItemViewCacheSize(20);
@@ -235,7 +235,9 @@ public class Specialist_list extends AppCompatActivity{
         {
 
             Specialist_DataModel d = new Specialist_DataModel();
-            String SQL = "Select * from "+ TableName +"  Where date(reg_date) between '"+ Global.DateConvertYMD(dtpFDate.getText().toString()) +"' and '"+ Global.DateConvertYMD(dtpTDate.getText().toString()) +"'";
+          //  String SQL = "Select * from "+ TableName +"  Where date(reg_date) between '"+ Global.DateConvertYMD(dtpFDate.getText().toString()) +"' and '"+ Global.DateConvertYMD(dtpTDate.getText().toString()) +"'";
+            String SQL = "Select * from "+ TableName ;
+
             List<Specialist_DataModel> data = d.SelectAll(this, SQL);
             dataList.clear();
 

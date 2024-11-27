@@ -1,5 +1,7 @@
 package forms_activity;
 
+import static com.google.gson.internal.$Gson$Types.arrayOf;
+
 import java.util.ArrayList;
  import java.util.List;
  import android.app.*;
@@ -7,7 +9,8 @@ import java.util.ArrayList;
  import android.content.Context;
  import android.content.DialogInterface;
  import android.content.Intent;
- import android.location.Location;
+import android.graphics.Color;
+import android.location.Location;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -16,8 +19,10 @@ import android.view.KeyEvent;
  import android.view.MotionEvent;
  import android.view.ViewGroup;
  import android.view.LayoutInflater;
- import android.widget.LinearLayout;
- import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
  import android.widget.Button;
  import android.widget.ImageButton;
  import Common.*;
@@ -38,6 +43,7 @@ import android.view.KeyEvent;
  import androidx.recyclerview.widget.RecyclerView;
 
 import org.icddrb.mental_health_survey.R;
+import org.icddrb.mental_health_survey.adapter.CustomSpinnerAdapter;
 
 public class Patient_list extends AppCompatActivity {
     boolean networkAvailable=false;
@@ -66,6 +72,7 @@ public class Patient_list extends AppCompatActivity {
     private DataAdapter mAdapter;
     static String TableName;
 
+    Spinner spinnerGender;
     TextView lblHeading;
     Button btnAdd;
     EditText txtSearch;
@@ -96,6 +103,9 @@ public class Patient_list extends AppCompatActivity {
          TableName = "Patient";
          lblHeading = (TextView)findViewById(R.id.lblHeading);
 
+
+
+
          ImageButton cmdBack = (ImageButton) findViewById(R.id.cmdBack);
          cmdBack.setOnClickListener(new View.OnClickListener() {
              public void onClick(View v) {
@@ -109,6 +119,28 @@ public class Patient_list extends AppCompatActivity {
                      }});
                  adb.show();
              }});
+
+         // In your Patient_list.java (inside onCreate)
+
+         spinnerGender = findViewById(R.id.spinnerGender);
+
+         spinnerGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+             @Override
+             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                 String selectedGender = parent.getItemAtPosition(position).toString();
+                 filterDataByGender(selectedGender);
+             }
+
+             @Override
+             public void onNothingSelected(AdapterView<?> parent) {
+                 // Optionally handle the case where no selection is made
+             }
+         });
+
+
+
+
+
 
          btnAdd   = (Button) findViewById(R.id.btnAdd);
          btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -214,8 +246,18 @@ public class Patient_list extends AppCompatActivity {
          return;
      }
  }
- 
- @Override
+
+    private void filterDataByGender(String gender) {
+        List<Patient_DataModel> filteredList = new ArrayList<>();
+        for (Patient_DataModel patient : dataList) {
+            if (patient.getpat_sex().equals(gender)) {
+                filteredList.add(patient);
+            }
+        }
+        mAdapter.updateList(filteredList); // Update RecyclerView
+    }
+
+    @Override
  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
      super.onActivityResult(requestCode, resultCode, data);
      if (resultCode == Activity.RESULT_CANCELED) {
@@ -231,8 +273,14 @@ public class Patient_list extends AppCompatActivity {
         {
      
            Patient_DataModel d = new Patient_DataModel();
-             String SQL = "Select * from "+ TableName +"  Where date(reg_date) between '"+ Global.DateConvertYMD(dtpFDate.getText().toString()) +"' and '"+ Global.DateConvertYMD(dtpTDate.getText().toString()) +"'";
-             List<Patient_DataModel> data = d.SelectAll(this, SQL);
+            /* String SQL = "Select * from "+ TableName +"  Where date(reg_date) between '"+ Global.DateConvertYMD(dtpFDate.getText().toString()) +"' and '"
+                     + Global.DateConvertYMD(dtpTDate.getText().toString()) +"'";*/
+
+             String SQL = "Select * from "+ TableName ;
+
+
+
+            List<Patient_DataModel> data = d.SelectAll(this, SQL);
              dataList.clear();
 
              dataList.addAll(data);
@@ -254,11 +302,18 @@ public class Patient_list extends AppCompatActivity {
 
      public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> {
          private List<Patient_DataModel> dataList;
+
+         public void updateList(List<Patient_DataModel> newList) {
+             this.dataList = newList;
+             notifyDataSetChanged(); // Refresh RecyclerView
+         }
+
          public class MyViewHolder extends RecyclerView.ViewHolder {
          LinearLayout secListRow;
          TextView PatientID;
          TextView reg_date;
          TextView pat_name;
+         TextView pat_sex;
          TextView pat_age;
          TextView mobile;
          public MyViewHolder(View convertView) {
@@ -267,6 +322,7 @@ public class Patient_list extends AppCompatActivity {
              PatientID = (TextView)convertView.findViewById(R.id.PatientID);
              reg_date = (TextView)convertView.findViewById(R.id.reg_date);
              pat_name = (TextView)convertView.findViewById(R.id.pat_name);
+             pat_sex = (TextView)convertView.findViewById(R.id.pat_sex);
              pat_age = (TextView)convertView.findViewById(R.id.pat_age);
              mobile = (TextView)convertView.findViewById(R.id.mobile);
              }
@@ -286,6 +342,7 @@ public class Patient_list extends AppCompatActivity {
              holder.PatientID.setText(data.getPatientID());
              holder.reg_date.setText(Global.DateConvertDMY(data.getreg_date()));
              holder.pat_name.setText(data.getpat_name());
+             holder.pat_sex.setText(data.getpat_sex());
              holder.pat_age.setText(String.valueOf(data.getpat_age()));
              holder.mobile.setText(data.getmobile());
 

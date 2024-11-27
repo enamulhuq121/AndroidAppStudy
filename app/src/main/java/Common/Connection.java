@@ -29,6 +29,7 @@ import org.icddrb.mental_health_survey.R;
 import org.icddrb.mental_health_survey.adapter.CustomSpinnerAdapter;
 
 import java.io.File;
+import java.lang.reflect.Member;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ import java.lang.String;
 import java.util.concurrent.ExecutionException;
 
 import Utility.CompressZip;
+import forms_datamodel.Member_DataModel;
 
 //--------------------------------------------------------------------------------------------------
 // Created by TanvirHossain on 17/03/2015.
@@ -1820,4 +1822,20 @@ public class Connection extends SQLiteOpenHelper {
         String SID = ReturnSingleValue("Select (ifnull(max(cast(SpecialistID as numeric(10))),0)+1)MaxId from Specialist where DeviceID='"+ DeviceNo +"'");
         return DeviceNo + Global.Right("0000000000"+SID,5);
     }
+
+   /* public List<Member_DataModel> fetchMembers(String query) {
+        List<Member_DataModel> members = new ArrayList<>();
+        SQLiteDatabase db= this.getReadableDatabase();;
+        Cursor cursor = db.rawQuery(query, null);
+        while (cursor.moveToNext()) {
+            Member_DataModel member = new Member();
+            member.setName(cursor.getString(cursor.getColumnIndex("Name")));
+            member.setAge(cursor.getString(cursor.getColumnIndex("Age")));
+            member.setSex(cursor.getString(cursor.getColumnIndex("Sex")));
+            members.add(member);
+        }
+        cursor.close();
+        return members;
+    }*/
+
 }

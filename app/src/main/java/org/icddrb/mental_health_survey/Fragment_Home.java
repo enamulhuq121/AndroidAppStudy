@@ -34,8 +34,8 @@ import Utility.MySharedPreferences;
 import forms_activity.Household_list;
 import forms_activity.Mapping_Household_list;
 
+import forms_activity.Member_list;
 import forms_activity.Patient_list;
-import forms_activity.Provider_list;
 import forms_activity.Specialist_list;
 
 public class Fragment_Home extends Fragment {
@@ -77,17 +77,20 @@ public class Fragment_Home extends Fragment {
                         //Activity Call
                         //--------------------------------------------------------------------------
                         IBundle.putString("facilityid", FACILITYID);
-                        Intent I = new Intent(thiscontext, Provider_list.class);
+                        Intent I = new Intent(thiscontext, Household_list.class);
                         I.putExtras(IBundle);
                         startActivity(I);
                     }
                    else if(position==2)
                     {
-                        //Activity Call
-                        //--------------------------------------------------------------------------
-                        IBundle.putString("facilityid", FACILITYID);
-                        Intent I = new Intent(thiscontext, Specialist_list.class);
-                        I.putExtras(IBundle);
+                    //Activity Call
+                    //--------------------------------------------------------------------------
+                     //   IBundle.putString("facilityid", FACILITYID);
+                   //     Intent I = new Intent(thiscontext, Specialist_list.class);
+                   //     I.putExtras(IBundle);
+                    //    startActivity(I);
+
+                        Intent I = new Intent(thiscontext, Member_list.class);
                         startActivity(I);
                     }
                     else if(position==3) {
@@ -215,7 +218,7 @@ public class Fragment_Home extends Fragment {
         private final String[] menu_list={
                 "Patient",
                 "Provider",
-                "Specialist",
+                "MemberList",
                 "Data Sync",
                 "Exit"
         };

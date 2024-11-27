@@ -17,7 +17,8 @@
             <TextView android:id="@+id/HHNo" android:background="#D7D7D7" android:textStyle="bold" android:layout_width="35dp" android:gravity="center" android:layout_height="35dp" android:textSize="16dp" />
         </LinearLayout>
         <RelativeLayout android:layout_weight="5"
-            android:layout_width="0dp" android:layout_marginLeft="10sp"
+            android:layout_width="0dp"
+            android:layout_marginLeft="10sp"
             android:layout_height="wrap_content">
             <LinearLayout android:id="@+id/secLeft" android:gravity="left" android:paddingTop="5sp" android:paddingBottom="8sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical">
                 <TextView android:id="@+id/HHHead" android:textColor="#006699" android:layout_width="match_parent" android:gravity="left" android:layout_height="wrap_content"/>

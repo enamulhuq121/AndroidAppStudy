@@ -12,8 +12,32 @@
             <TextView android:id="@+id/lblHeading" android:text="Patient Registration"  android:paddingLeft="10sp" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center_vertical" android:textSize="20sp" android:textColor="@color/pageHeading"/>
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical"  android:paddingLeft="16dp" android:paddingRight="16dp" android:paddingTop="16dp">
-    <LinearLayout android:id="@+id/secDateSearch" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
+    <LinearLayout  android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+        <View android:id="@+id/lineCluster" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
+        <View android:id="@+id/lineVCode" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+
+
+        <RelativeLayout android:id="@+id/secBari" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle2">
+            <TextView android:id="@+id/lblBari" android:text="5." android:visibility="gone" android:layout_width="40sp" android:layout_height="wrap_content" android:textSize="18sp" />
+            <TextView android:id="@+id/VlblBari" android:text="Sex" android:layout_toRightOf="@+id/lblBari" android:layout_width="125sp" android:layout_height="wrap_content" android:textSize="18sp" />
+            <Spinner android:id="@+id/spinnerGender"
+                android:layout_toRightOf="@id/VlblBari"
+                android:drawSelectorOnTop="true"
+                android:layout_width="match_parent"
+                android:layout_marginRight="120sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:prompt="@string/planet_prompt"
+                android:textSize="18sp"
+                android:entries="@array/gender_array"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"  android:layout_height="match_parent" android:orientation="vertical"  android:paddingLeft="16dp" android:paddingRight="16dp" android:paddingTop="16dp">
+    <LinearLayout android:id="@+id/secDateSearch" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle0">
         <TextView android:text="Date From  " android:layout_width="wrap_content" android:layout_height="wrap_content"/>
         <EditText android:id="@+id/dtpFDate" android:drawableRight="@drawable/calendersmall" android:layout_width="150sp" android:inputType="text" android:layout_height="wrap_content" android:focusable="false" style="@style/customEdit" android:layout_marginRight="10sp" android:drawableTint="@color/primaryColor"/>
         <TextView android:text="To" android:layout_width="40sp" android:gravity="center" android:layout_height="wrap_content"/>
@@ -22,7 +46,7 @@
             android:background="@drawable/button_style_circle_line" android:layout_width="wrap_content" android:layout_height="40sp" android:layout_centerInParent="true" android:text=" New " android:paddingLeft="5sp" android:paddingRight="5sp"/>
     </LinearLayout>
     <View android:layout_height="1dip" android:layout_width="fill_parent" android:layout_marginBottom="0sp" android:background="#CCCCCC" />
-    <RelativeLayout android:padding="10sp" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content">
+    <RelativeLayout android:padding="10sp" android:visibility="gone"  android:layout_width="fill_parent" android:layout_height="wrap_content">
         <EditText android:id="@+id/txtSearch"
             style="@style/icddrb_search_edittext"
             android:layout_alignParentStart="true"
@@ -32,7 +56,7 @@
             android:maxLength="100" android:layout_marginRight="100dp"
             android:textSize="18sp" android:padding="10dp" android:layout_centerInParent="true"/>
      </RelativeLayout>
-    <View android:layout_height="1dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_marginBottom="0sp" android:background="#CCCCCC" />
+    <View android:layout_height="1dip" android:visibility="visible" android:layout_width="fill_parent" android:layout_marginBottom="0sp" android:background="#CCCCCC" />
        <include android:layout_width="match_parent" android:layout_height="wrap_content" layout="@layout/patientheading"/>
        <FrameLayout android:layout_width="match_parent" android:layout_weight="1" android:layout_height="0dp">
              <androidx.recyclerview.widget.RecyclerView

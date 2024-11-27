@@ -421,7 +421,7 @@
              IDbundle.putString("PatCatPreg", PatCatPreg);
              IDbundle.putString("PatCatDeliv", PatCatDeliv);
              IDbundle.putString("recv_service", RecvService);
-             Intent f1 = new Intent(getApplicationContext(), Menu_Patient.class);
+             Intent f1 = new Intent(getApplicationContext(), Patient_list.class);
              f1.putExtras(IDbundle);
              startActivityForResult(f1, 1);
          }
