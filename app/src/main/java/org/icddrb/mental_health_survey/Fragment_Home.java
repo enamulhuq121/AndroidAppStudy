@@ -35,7 +35,6 @@ import forms_activity.Household_list;
 import forms_activity.Mapping_Household_list;
 
 import forms_activity.Patient_list;
-import forms_activity.Provider_list;
 import forms_activity.Specialist_list;
 
 public class Fragment_Home extends Fragment {
@@ -77,7 +76,7 @@ public class Fragment_Home extends Fragment {
                         //Activity Call
                         //--------------------------------------------------------------------------
                         IBundle.putString("facilityid", FACILITYID);
-                        Intent I = new Intent(thiscontext, Provider_list.class);
+                        Intent I = new Intent(thiscontext, Household_list.class);
                         I.putExtras(IBundle);
                         startActivity(I);
                     }

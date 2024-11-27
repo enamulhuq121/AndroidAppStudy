@@ -1,5 +1,7 @@
 package forms_activity;
 
+import static com.google.gson.internal.$Gson$Types.arrayOf;
+
 import java.util.ArrayList;
  import java.util.List;
  import android.app.*;
@@ -7,7 +9,8 @@ import java.util.ArrayList;
  import android.content.Context;
  import android.content.DialogInterface;
  import android.content.Intent;
- import android.location.Location;
+import android.graphics.Color;
+import android.location.Location;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -16,8 +19,10 @@ import android.view.KeyEvent;
  import android.view.MotionEvent;
  import android.view.ViewGroup;
  import android.view.LayoutInflater;
- import android.widget.LinearLayout;
- import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
  import android.widget.Button;
  import android.widget.ImageButton;
  import Common.*;
@@ -38,6 +43,7 @@ import android.view.KeyEvent;
  import androidx.recyclerview.widget.RecyclerView;
 
 import org.icddrb.mental_health_survey.R;
+import org.icddrb.mental_health_survey.adapter.CustomSpinnerAdapter;
 
 public class Patient_list extends AppCompatActivity {
     boolean networkAvailable=false;
@@ -66,6 +72,7 @@ public class Patient_list extends AppCompatActivity {
     private DataAdapter mAdapter;
     static String TableName;
 
+    Spinner spinnerGender;
     TextView lblHeading;
     Button btnAdd;
     EditText txtSearch;
@@ -96,6 +103,9 @@ public class Patient_list extends AppCompatActivity {
          TableName = "Patient";
          lblHeading = (TextView)findViewById(R.id.lblHeading);
 
+
+
+
          ImageButton cmdBack = (ImageButton) findViewById(R.id.cmdBack);
          cmdBack.setOnClickListener(new View.OnClickListener() {
              public void onClick(View v) {
@@ -109,6 +119,14 @@ public class Patient_list extends AppCompatActivity {
                      }});
                  adb.show();
              }});
+
+         // In your Patient_list.java (inside onCreate)
+
+
+
+
+
+
 
          btnAdd   = (Button) findViewById(R.id.btnAdd);
          btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -259,6 +277,7 @@ public class Patient_list extends AppCompatActivity {
          TextView PatientID;
          TextView reg_date;
          TextView pat_name;
+         TextView pat_sex;
          TextView pat_age;
          TextView mobile;
          public MyViewHolder(View convertView) {
@@ -267,6 +286,7 @@ public class Patient_list extends AppCompatActivity {
              PatientID = (TextView)convertView.findViewById(R.id.PatientID);
              reg_date = (TextView)convertView.findViewById(R.id.reg_date);
              pat_name = (TextView)convertView.findViewById(R.id.pat_name);
+             pat_sex = (TextView)convertView.findViewById(R.id.pat_sex);
              pat_age = (TextView)convertView.findViewById(R.id.pat_age);
              mobile = (TextView)convertView.findViewById(R.id.mobile);
              }
@@ -286,6 +306,7 @@ public class Patient_list extends AppCompatActivity {
              holder.PatientID.setText(data.getPatientID());
              holder.reg_date.setText(Global.DateConvertDMY(data.getreg_date()));
              holder.pat_name.setText(data.getpat_name());
+             holder.pat_sex.setText(data.getpat_sex());
              holder.pat_age.setText(String.valueOf(data.getpat_age()));
              holder.mobile.setText(data.getmobile());
 

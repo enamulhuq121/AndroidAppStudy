@@ -125,9 +125,9 @@ public class Specialist_list extends AppCompatActivity{
                     startActivityForResult(intent, 1);
 
                 }});
+
+
             txtSearch = (EditText)findViewById(R.id.txtSearch);
-
-
             recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
             mAdapter = new Specialist_list.DataAdapter(dataList);
             recyclerView.setItemViewCacheSize(20);
