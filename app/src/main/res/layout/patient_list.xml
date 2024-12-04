@@ -41,8 +41,33 @@
                 android:textSize="18sp" />
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/secVillage"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            style="@style/rowStyle2">
 
-        <RelativeLayout android:id="@+id/secBari" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle2">
+            <TextView
+                android:id="@+id/VlblVillage"
+                android:text="Village"
+                android:layout_width="125sp"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/spinnerVillage"
+                android:layout_toRightOf="@id/VlblVillage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:prompt="@string/village_prompt"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+
+
+        <RelativeLayout android:id="@+id/secBari" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle2">
             <TextView android:id="@+id/lblBari" android:text="5." android:visibility="gone" android:layout_width="40sp" android:layout_height="wrap_content" android:textSize="18sp" />
             <TextView android:id="@+id/VlblBari" android:text="Sex" android:layout_toRightOf="@+id/lblBari" android:layout_width="125sp" android:layout_height="wrap_content" android:textSize="18sp" />
             <Spinner android:id="@+id/spinnerGender"
