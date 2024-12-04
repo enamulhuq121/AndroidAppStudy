@@ -75,6 +75,7 @@ public class Patient_list extends AppCompatActivity {
     private DataAdapter mAdapter;
     static String TableName;
     Spinner spinnerLocation;
+    Spinner spinnerVillage;
     Spinner spinnerGender;
     TextView lblHeading;
     Button btnAdd;
@@ -123,11 +124,21 @@ public class Patient_list extends AppCompatActivity {
                  adb.show();
              }});
 
+
+
          Spinner spinnerLocation = findViewById(R.id.spinnerLocation);
          List<String> locationList = getLocationList();
          ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locationList);
          adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
          spinnerLocation.setAdapter(adapter);
+
+         Spinner spinnerVillage = findViewById(R.id.spinnerVillage);
+         List<String> villageList = getVillageList();
+         ArrayAdapter<String> vadapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, villageList);
+         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+         spinnerVillage.setAdapter(vadapter);
+
+
 
 
 
@@ -271,6 +282,24 @@ public class Patient_list extends AppCompatActivity {
         }
         db.close();
         return locations;
+    }
+
+    private List<String> getVillageList() {
+        List<String> villages = new ArrayList<>();
+        SQLiteDatabase db = C.getReadableDatabase();
+
+        // Query to fetch unique village names for the selected LocID
+        Cursor cursor2 = db.rawQuery("SELECT DISTINCT VillName FROM Village",null);
+
+        if (cursor2 != null) {
+            while (cursor2.moveToNext()) {
+               // villages.add(cursor2.getString(cursor2.getColumnIndex("VillName")));
+                villages.add(cursor2.getString(cursor2.getColumnIndex("VillName")));
+            }
+            cursor2.close();
+        }
+        db.close();
+        return villages;
     }
 
 
