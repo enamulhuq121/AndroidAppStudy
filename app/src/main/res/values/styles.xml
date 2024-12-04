@@ -255,13 +255,7 @@
         <item name="android:paddingLeft">10sp</item>
     </style>
 
-    <style name="rowStyle2">
-        <item name="android:paddingTop">10sp</item>
-        <item name="android:paddingBottom">10sp</item>
-        <item name="android:background">@android:color/transparent</item>
-        <item name="android:paddingRight">10sp</item>
-        <item name="android:paddingLeft">10sp</item>
-    </style>
+
 
     <style name="formHeading">
         <item name="android:layout_marginTop">0sp</item>

@@ -9,6 +9,8 @@ import java.util.ArrayList;
  import android.content.Context;
  import android.content.DialogInterface;
  import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.location.Location;
 import android.text.Editable;
@@ -20,6 +22,7 @@ import android.view.KeyEvent;
  import android.view.ViewGroup;
  import android.view.LayoutInflater;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -71,7 +74,7 @@ public class Patient_list extends AppCompatActivity {
     private RecyclerView recyclerView;
     private DataAdapter mAdapter;
     static String TableName;
-
+    Spinner spinnerLocation;
     Spinner spinnerGender;
     TextView lblHeading;
     Button btnAdd;
@@ -119,6 +122,15 @@ public class Patient_list extends AppCompatActivity {
                      }});
                  adb.show();
              }});
+
+         Spinner spinnerLocation = findViewById(R.id.spinnerLocation);
+         List<String> locationList = getLocationList();
+         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locationList);
+         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+         spinnerLocation.setAdapter(adapter);
+
+
+
 
          // In your Patient_list.java (inside onCreate)
 
@@ -246,6 +258,23 @@ public class Patient_list extends AppCompatActivity {
          return;
      }
  }
+
+    private List<String> getLocationList() {
+        List<String> locations = new ArrayList<>();
+        SQLiteDatabase db = C.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT DISTINCT GeoLevel7 || '-' || GeoLevel7Name AS CombinedColumn FROM Location", null);
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                locations.add(cursor.getString(0)); // Add GeoLevel7Name to the list
+            }
+            cursor.close();
+        }
+        db.close();
+        return locations;
+    }
+
+
+
 
     private void filterDataByGender(String gender) {
         List<Patient_DataModel> filteredList = new ArrayList<>();

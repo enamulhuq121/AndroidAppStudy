@@ -17,6 +17,29 @@
         <View android:id="@+id/lineCluster" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
 
         <View android:id="@+id/lineVCode" android:layout_height="1dip" android:layout_width="fill_parent" android:background="#CCCCCC" />
+        <RelativeLayout
+            android:id="@+id/secLocation"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            style="@style/rowStyle2">
+
+            <TextView
+                android:id="@+id/VlblLocation"
+                android:text="Location"
+                android:layout_width="125sp"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/spinnerLocation"
+                android:layout_toRightOf="@id/VlblLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:prompt="@string/location_prompt"
+                android:textSize="18sp" />
+        </RelativeLayout>
 
 
         <RelativeLayout android:id="@+id/secBari" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" style="@style/rowStyle2">
